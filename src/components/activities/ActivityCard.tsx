@@ -16,6 +16,7 @@ export function ActivityCard({
   headingLevel: Heading = "h3",
   sizes = "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw",
 }: ActivityCardProps) {
+  const facts = [activity.practical?.duration, activity.practical?.price].filter(Boolean);
   return (
     <article className="group relative flex flex-col has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-orange has-[a:focus-visible]:outline-solid">
       <div className="relative aspect-[4/5] overflow-hidden bg-sand-deep">
@@ -38,6 +39,7 @@ export function ActivityCard({
           </Link>
         </Heading>
         <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-muted">{activity.summary}</p>
+        {facts.length > 0 && <p className="mt-4 text-sm font-semibold text-charcoal">{facts.join(" · ")}</p>}
         <span
           aria-hidden="true"
           className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-orange-deep transition-colors group-hover:text-charcoal"

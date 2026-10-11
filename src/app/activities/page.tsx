@@ -18,7 +18,7 @@ const breadcrumbs = [
 export const metadata: Metadata = buildMetadata({
   title: "Activities in the Timlalin Dunes",
   description:
-    "Explore every TimlalinTrip experience: sandboarding, quad biking, buggy adventures, camel rides, a canyon tour, sunset tea and Moroccan dinner north of Agadir.",
+    "Timlalin Dunes activities near Agadir: quad biking, sandboarding, camel rides, buggy, canyon tour, sunset tea and Moroccan dinner. From €10, pay on arrival.",
   path: "/activities",
 });
 
