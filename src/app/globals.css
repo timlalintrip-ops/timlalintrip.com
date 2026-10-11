@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------------
+   Design tokens
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-charcoal: #111719;
+  --color-charcoal-soft: #1a2225;
+  --color-charcoal-line: #2a3438;
+  --color-orange: #cf7837;
+  --color-orange-bright: #e08a49;
+  /* Darker orange for text on light backgrounds (WCAG AA on sand and white). */
+  --color-orange-deep: #9a5220;
+  --color-sand: #f5efe5;
+  --color-sand-deep: #ebe1d1;
+  --color-sand-line: #d9cbb4;
+  --color-white: #ffffff;
+  /* Muted text: AA contrast on sand/white and on charcoal respectively. */
+  --color-muted: #5c6366;
+  --color-muted-inverse: #a9b0b2;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Illustrated placeholder palette */
+  --color-scene-sky: #f2d9b8;
+  --color-scene-sky-high: #e9c79c;
+  --color-scene-sun: #f6e7cf;
+  --color-scene-sea: #6f8b8f;
+  --color-scene-dune-1: #e3b77f;
+  --color-scene-dune-2: #d39a5c;
+  --color-scene-dune-3: #b9783f;
+  --color-scene-dune-4: #8d562c;
+  --color-scene-dusk: #4a2f2a;
+  --color-scene-night: #18222a;
+  --color-scene-rock-1: #a8653a;
+  --color-scene-rock-2: #7c4426;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(2.75rem, 1.6rem + 5.2vw, 6rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.035em;
+  --text-headline: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  --text-headline--line-height: 1.05;
+  --text-headline--letter-spacing: -0.025em;
+  --text-title: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.015em;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --spacing-header: 4.5rem;
+
+  --animate-menu-in: menu-in 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-sand font-sans text-charcoal antialiased;
+  }
+
+  ::selection {
+    @apply bg-orange text-charcoal;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Components
+   --------------------------------------------------------------------------- */
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-current opacity-60;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-out-soft);
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  .prose-site {
+    @apply max-w-[68ch] text-[1.0625rem] leading-relaxed text-charcoal/85;
+  }
+
+  .prose-site h2 {
+    @apply mt-14 mb-4 text-2xl font-semibold tracking-tight text-charcoal sm:text-3xl;
+  }
+
+  .prose-site h3 {
+    @apply mt-8 mb-3 text-xl font-semibold text-charcoal;
+  }
+
+  .prose-site p {
+    @apply mb-5;
+  }
+
+  .prose-site ul {
+    @apply mb-6 space-y-2 pl-0;
+  }
+
+  .prose-site li {
+    @apply relative pl-6;
+  }
+
+  .prose-site li::before {
+    content: "";
+    @apply absolute top-[0.7em] left-0 h-px w-3 bg-orange;
+  }
+
+  .prose-site a {
+    @apply font-medium text-orange-deep underline decoration-1 underline-offset-4 hover:text-charcoal;
+  }
+
+  /* Subtle film grain used on dark sections */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 }
