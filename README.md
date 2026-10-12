@@ -1,4 +1,4 @@
-# TimlalinTrip.com — Version 1 
+# TimlalinTrip.com — Version 1  
 
 Tourism website for desert activities in the Timlalin Dunes (coastal dunes north of Agadir, near Tamri, Morocco).
 
