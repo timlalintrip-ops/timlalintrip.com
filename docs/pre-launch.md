@@ -101,11 +101,11 @@ Hosting is Vercel (confirmed by the owner; there is no `vercel.json`, the defaul
 | 6 | Create the Gmail App Password and add `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `BOOKING_TO_EMAIL` in Vercel (README → "Configuring Gmail delivery on Vercel"); never `NEXT_PUBLIC_` | Owner, Account |
 | 7 | Add a Vercel Firewall rate-limit rule for `POST /book-now` (README → "Spam and rate limiting") | Account |
 | 8 | Optional: test on a Preview deployment with Preview-scoped variables pointing to a test inbox (README → "Testing delivery safely") | Deployed |
-| 9 | Point `timlalintrip.com` (and `www`, redirected to the apex) to the host; confirm HTTPS certificate, HTTP→HTTPS redirect and that `https://timlalintrip.com` is the only canonical host | Account, Deployed |
+| 9 | Point `timlalintrip.com` and `www` to the host, with the apex redirecting to `www`; confirm HTTPS certificate, HTTP→HTTPS redirect and that `https://www.timlalintrip.com` (the value of `siteConfig.url`) is the only canonical host | Account, Deployed |
 | 10 | Redeploy Production after setting the variables, send one fictional enquiry and confirm it arrives once in `timlalintrip@gmail.com` (check Spam too) and that Reply goes to the test address | Deployed |
 | 11 | Check response headers on the live site (CSP, HSTS, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`; no `X-Powered-By`) and that the browser console shows no CSP violations | Deployed |
-| 12 | Live smoke test: all routes 200, `/activities/does-not-exist` 404, canonical tags and `og:image` use `https://timlalintrip.com`, sitemap lists only intended pages | Deployed |
-| 13 | Google Search Console: verify the domain property (DNS TXT record), submit `https://timlalintrip.com/sitemap.xml`, inspect the homepage URL | Account |
+| 12 | Live smoke test: all routes 200, `/activities/does-not-exist` 404, canonical tags and `og:image` use `https://www.timlalintrip.com`, sitemap lists only intended pages | Deployed |
+| 13 | Google Search Console: verify the domain property (DNS TXT record), submit `https://www.timlalintrip.com/sitemap.xml`, inspect the homepage URL | Account |
 | 14 | PageSpeed Insights on `/`, one activity page and `/book-now` (mobile and desktop); compare with the local Lighthouse results in the audit | Deployed |
 | 15 | Monitoring in Vercel logs: watch for `[booking] Enquiry … not delivered: …` (for example `authentication rejected` means the App Password was revoked or changed), `… is not a valid email address`, and unusual volumes of `[booking] Enquiry rejected by …`. Logs contain no visitor data — keep it that way in any logging/analytics added later | Account, Deployed |
 | 16 | If analytics, maps or embeds are added later: update the CSP in `next.config.ts` with their exact origins and update the privacy policy | Dev, Owner |

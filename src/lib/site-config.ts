@@ -63,7 +63,8 @@ type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   name: "TimlalinTrip",
-  url: "https://timlalintrip.com",
+  // Must match the primary domain in Vercel; the apex redirects to www.
+  url: "https://www.timlalintrip.com",
   locale: "en_GB",
   language: "en",
   tagline: "Desert adventures in the Timlalin Dunes",
