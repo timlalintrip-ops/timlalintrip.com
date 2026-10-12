@@ -1,4 +1,4 @@
-# TimlalinTrip.com — Version 1
+# TimlalinTrip.com — Version 1 
 
 Tourism website for desert activities in the Timlalin Dunes (coastal dunes north of Agadir, near Tamri, Morocco).
 
@@ -163,5 +163,6 @@ The CSP allows only same-origin scripts, styles, images, fonts and connections, 
 ## Before launch
 
 See [`docs/pre-launch.md`](docs/pre-launch.md) for the owner content checklist, image asset checklist and the ordered deployment and search-launch checklist.
-#   t i m l a l i n t r i p . c o m  
+#   t i m l a l i n t r i p . c o m 
+ 
  
