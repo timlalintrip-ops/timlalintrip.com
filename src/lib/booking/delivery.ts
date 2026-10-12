@@ -31,7 +31,8 @@ export type EnquiryPayload = BookingEnquiry & {
 type MailConfig = { user: string; appPassword: string; to: string };
 
 const SMTP_HOST = "smtp.gmail.com";
-const SMTP_PORT = 465;
+// STARTTLS on 587: some antivirus software intercepts implicit TLS on 465.
+const SMTP_PORT = 587;
 const BUSINESS_TIME_ZONE = "Africa/Casablanca";
 
 function readMailConfig(): MailConfig | null {
@@ -155,7 +156,8 @@ export async function deliverBookingEnquiry(payload: EnquiryPayload): Promise<De
   const transport = nodemailer.createTransport({
     host: SMTP_HOST,
     port: SMTP_PORT,
-    secure: true,
+    secure: false,
+    requireTLS: true,
     auth: { user: config.user, pass: config.appPassword },
     connectionTimeout: 10_000,
     greetingTimeout: 10_000,

@@ -1,9 +1,10 @@
-import Link from "next/link";
+import type { ReactNode } from "react";
 import { hasPracticalInfo, type PracticalInfo } from "@/content/activities";
 
 type PracticalDetailsProps = {
   practical?: PracticalInfo;
-  bookingHref: string;
+  /** Booking control rendered below the details. */
+  action: ReactNode;
 };
 
 const fieldLabels: { key: "duration" | "minimumAge" | "price" | "meetingPoint" | "transport"; label: string }[] = [
@@ -31,7 +32,7 @@ function ListBlock({ title, items }: { title: string; items?: string[] }) {
 }
 
 /** Shows only confirmed practical details; otherwise explains how they are provided. */
-export function PracticalDetails({ practical, bookingHref }: PracticalDetailsProps) {
+export function PracticalDetails({ practical, action }: PracticalDetailsProps) {
   return (
     <aside aria-labelledby="practical-title" className="self-start border border-sand-line bg-white p-7 sm:p-8">
       <h2 id="practical-title" className="font-sans text-xs font-semibold tracking-[0.2em] text-orange-deep uppercase">
@@ -67,12 +68,7 @@ export function PracticalDetails({ practical, bookingHref }: PracticalDetailsPro
         </div>
       )}
 
-      <Link
-        href={bookingHref}
-        className="mt-7 inline-flex min-h-12 w-full items-center justify-center bg-charcoal px-5 text-sm font-semibold text-white transition-colors hover:bg-orange hover:text-charcoal"
-      >
-        Request details and availability
-      </Link>
+      <div className="mt-7">{action}</div>
     </aside>
   );
 }

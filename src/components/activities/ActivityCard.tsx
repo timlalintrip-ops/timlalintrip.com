@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getActivityPath, type Activity } from "@/content/activities";
+import { BookActivityButton } from "@/components/booking/BookActivityButton";
 import { ArrowIcon } from "@/components/ui/icons";
 import { SiteImage } from "@/components/ui/SiteImage";
 
@@ -40,13 +41,21 @@ export function ActivityCard({
         </Heading>
         <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-muted">{activity.summary}</p>
         {facts.length > 0 && <p className="mt-4 text-sm font-semibold text-charcoal">{facts.join(" · ")}</p>}
-        <span
-          aria-hidden="true"
-          className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-orange-deep transition-colors group-hover:text-charcoal"
-        >
-          Discover
-          <ArrowIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </span>
+        <div className="mt-5 flex items-center justify-between gap-4">
+          <span
+            aria-hidden="true"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-orange-deep transition-colors group-hover:text-charcoal"
+          >
+            Discover
+            <ArrowIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+          <BookActivityButton
+            label="Book now"
+            activitySlug={activity.slug}
+            activityName={activity.shortName}
+            className="relative z-10 min-h-11 px-5"
+          />
+        </div>
       </div>
     </article>
   );

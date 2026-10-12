@@ -71,6 +71,18 @@ export function articleSchema(guide: Guide, path: string): JsonLdObject {
   };
 }
 
+/** Only for questions and answers that are visible on the same page. */
+export function faqSchema(faqs: { question: string; answer: string }[]): JsonLdObject {
+  return {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
 /** Wraps one or more nodes in a single JSON-LD document. */
 export function jsonLdGraph(...nodes: JsonLdObject[]): JsonLdObject {
   return {

@@ -181,8 +181,9 @@ describe("successful delivery", () => {
     expect(mocks.createTransport).toHaveBeenCalledWith(
       expect.objectContaining({
         host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
+        port: 587,
+        secure: false,
+        requireTLS: true,
         auth: { user: SENDER, pass: APP_PASSWORD.replace(/\s/g, "") },
         connectionTimeout: expect.any(Number),
         greetingTimeout: expect.any(Number),

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState, useEffect, useRef, useState, type FormEvent, type ReactNode, type Ref } from "react";
 import { submitBookingEnquiry, type BookingFormState, type BookingFormValues } from "@/app/book-now/actions";
+import { MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 import type { BookingField, FieldErrors } from "@/lib/validation";
 
 export type ActivityOption = { value: string; label: string };
@@ -12,6 +13,8 @@ type BookingFormProps = {
   defaultActivity?: string;
   /** Undefined while the server has not yet reported whether delivery is configured. */
   deliveryConfigured?: boolean;
+  /** Digits only, international format. When set, visitors can also send the enquiry on WhatsApp. */
+  whatsappNumber?: string;
   limits: {
     nameMax: number;
     emailMax: number;
@@ -32,6 +35,31 @@ const fieldLabels: Record<BookingField, string> = {
   participants: "Number of participants",
   message: "Message",
 };
+
+const whatsappRequiredFields: BookingField[] = ["fullName", "activity", "preferredDate", "participants"];
+
+function buildWhatsAppMessage(form: HTMLFormElement, activityOptions: ActivityOption[]): string {
+  const read = (name: BookingField) => {
+    const field = form.elements.namedItem(name);
+    return field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement
+      ? field.value.trim()
+      : "";
+  };
+  const activity = read("activity");
+  const lines = [
+    "Hello TimlalinTrip, I would like to book:",
+    "",
+    `Activity: ${activityOptions.find((option) => option.value === activity)?.label ?? activity}`,
+    `Date: ${read("preferredDate")}`,
+    `Participants: ${read("participants")}`,
+    `Name: ${read("fullName")}`,
+  ];
+  const email = read("email");
+  if (email) lines.push(`Email: ${email}`);
+  const message = read("message");
+  if (message) lines.push("", message);
+  return lines.join("\n");
+}
 
 function todayIso(): string {
   const now = new Date();
@@ -119,12 +147,30 @@ function ErrorSummary({ errors }: { errors: FieldErrors }) {
   );
 }
 
-export function BookingForm({ activityOptions, defaultActivity, deliveryConfigured, limits }: BookingFormProps) {
+export function BookingForm({
+  activityOptions,
+  defaultActivity,
+  deliveryConfigured,
+  whatsappNumber,
+  limits,
+}: BookingFormProps) {
   const [state, formAction, pending] = useActionState(submitBookingEnquiry, initialState);
   const [formKey, setFormKey] = useState(0);
   const [lastState, setLastState] = useState(state);
   const statusRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const startedAtRef = useRef(0);
+
+  function sendViaWhatsApp() {
+    const form = formRef.current;
+    if (!form || !whatsappNumber) return;
+    for (const name of whatsappRequiredFields) {
+      const field = form.elements.namedItem(name);
+      if ((field instanceof HTMLInputElement || field instanceof HTMLSelectElement) && !field.reportValidity()) return;
+    }
+    const text = encodeURIComponent(buildWhatsAppMessage(form, activityOptions));
+    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank", "noopener,noreferrer");
+  }
 
   // Remount the form with the submitted values after each server response, so
   // React's automatic form reset never discards what the visitor typed.
@@ -175,9 +221,13 @@ export function BookingForm({ activityOptions, defaultActivity, deliveryConfigur
   return (
     <div>
       {deliveryConfigured === false && state.status === "idle" && (
-        <StatusPanel tone="warning" title="Online enquiries are not active yet">
-          The enquiry form is not yet connected to our inbox, so submissions cannot be received at the moment.
-          Please check back soon.
+        <StatusPanel
+          tone="warning"
+          title={whatsappNumber ? "Email enquiries are not active yet" : "Online enquiries are not active yet"}
+        >
+          {whatsappNumber
+            ? "Please send your request on WhatsApp using the button below — your details are filled in for you."
+            : "The enquiry form is not yet connected to our inbox, so submissions cannot be received at the moment. Please check back soon."}
         </StatusPanel>
       )}
       {state.status === "invalid" && (
@@ -187,8 +237,8 @@ export function BookingForm({ activityOptions, defaultActivity, deliveryConfigur
       )}
       {state.status === "unavailable" && (
         <StatusPanel tone="warning" title="Your enquiry has not been sent" panelRef={statusRef}>
-          Online enquiries are not active yet, so we could not receive your details. Nothing has been stored. Your
-          answers are still in the form below.
+          Email enquiries are not active yet, so we could not receive your details. Nothing has been stored. Your
+          answers are still in the form below{whatsappNumber ? " — you can send them on WhatsApp instead." : "."}
         </StatusPanel>
       )}
       {state.status === "error" && (
@@ -197,7 +247,7 @@ export function BookingForm({ activityOptions, defaultActivity, deliveryConfigur
         </StatusPanel>
       )}
 
-      <form key={formKey} action={formAction} onSubmit={handleSubmit} className="space-y-7" aria-describedby="form-note">
+      <form ref={formRef} key={formKey} action={formAction} onSubmit={handleSubmit} className="space-y-7" aria-describedby="form-note">
         <div className="grid gap-7 sm:grid-cols-2">
           <Field id="fullName" label="Full name" error={errors.fullName}>
             {(describedBy) => (
@@ -324,21 +374,36 @@ export function BookingForm({ activityOptions, defaultActivity, deliveryConfigur
         </div>
         <input type="hidden" name="startedAt" defaultValue="" />
 
-        <div className="flex flex-col gap-5 border-t border-sand-line pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p id="form-note" className="max-w-sm text-sm text-muted">
-            Sending this form is an enquiry, not a confirmed booking. See our{" "}
+        <div className="space-y-5 border-t border-sand-line pt-7">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <button
+              type="submit"
+              disabled={pending || deliveryConfigured !== true}
+              className="inline-flex min-h-14 flex-1 items-center justify-center gap-3 bg-orange px-8 font-semibold text-charcoal transition-colors hover:bg-orange-bright disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <MailIcon className="size-5" />
+              {pending ? "Sending…" : "Send by email"}
+            </button>
+            {whatsappNumber && (
+              <button
+                type="button"
+                onClick={sendViaWhatsApp}
+                className="inline-flex min-h-14 flex-1 items-center justify-center gap-3 bg-[#1f7a4d] px-8 font-semibold text-white transition-colors hover:bg-[#17603c]"
+              >
+                <WhatsAppIcon className="size-5" />
+                Send on WhatsApp
+              </button>
+            )}
+          </div>
+          <p id="form-note" className="text-sm text-muted">
+            Sending this form is an enquiry, not a confirmed booking.
+            {whatsappNumber && " WhatsApp opens with your details ready to send; email is optional for WhatsApp."} See
+            our{" "}
             <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-charcoal">
               privacy policy
             </Link>
             .
           </p>
-          <button
-            type="submit"
-            disabled={pending || deliveryConfigured !== true}
-            className="inline-flex min-h-14 shrink-0 items-center justify-center bg-orange px-8 font-semibold text-charcoal transition-colors hover:bg-orange-bright disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {pending ? "Sending…" : "Send enquiry"}
-          </button>
         </div>
       </form>
     </div>

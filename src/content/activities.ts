@@ -93,7 +93,13 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.sandboarding,
-    galleryImages: [media.sandboarding, media.homeHero],
+    galleryImages: [
+      media.sandboarding,
+      media.sandboardingYoungRider,
+      media.sandboardingOceanView,
+      media.sandboardingClimb,
+      media.sandboardingWalkUp,
+    ],
     practical: {
       price: "From €10 per person",
       meetingPoint,
@@ -117,7 +123,7 @@ const activities: Activity[] = [
       paymentFaq,
     ],
     relatedSlugs: ["quad-biking-timlalin", "camel-ride", "sunset-tea"],
-    relatedGuideSlugs: ["what-to-pack-timlalin-dunes", "choosing-a-desert-activity"],
+    relatedGuideSlugs: ["sandboarding-for-beginners", "timlalin-dunes-with-kids", "what-to-pack-timlalin-dunes"],
     published: true,
   },
   {
@@ -151,7 +157,15 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.quadBiking,
-    galleryImages: [media.quadBiking, media.activitiesHero],
+    galleryImages: [
+      media.quadBiking,
+      media.quadAction,
+      media.quadCoastRide,
+      media.quadOceanView,
+      media.quadGroupLineup,
+      media.quadTwoRiders,
+      media.quadDuneTop,
+    ],
     practical: {
       duration: "1 hour",
       price: "From €25 per person",
@@ -180,7 +194,7 @@ const activities: Activity[] = [
       paymentFaq,
     ],
     relatedSlugs: ["buggy-adventure", "sandboarding-timlalin", "canyon-tour"],
-    relatedGuideSlugs: ["choosing-a-desert-activity", "what-to-pack-timlalin-dunes"],
+    relatedGuideSlugs: ["quad-biking-near-agadir", "quad-or-buggy-timlalin", "staying-safe-on-the-dunes"],
     published: true,
   },
   {
@@ -214,7 +228,7 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.buggy,
-    galleryImages: [media.buggy, media.activitiesHero],
+    galleryImages: [media.buggy, media.buggyPair],
     practical: {
       meetingPoint,
       transport: hotelPickup,
@@ -224,7 +238,7 @@ const activities: Activity[] = [
     },
     faqs: [locationFaq, paymentFaq],
     relatedSlugs: ["quad-biking-timlalin", "canyon-tour", "sunset-tea"],
-    relatedGuideSlugs: ["choosing-a-desert-activity"],
+    relatedGuideSlugs: ["quad-or-buggy-timlalin", "romantic-things-to-do-near-agadir", "choosing-a-desert-activity"],
     published: true,
   },
   {
@@ -258,7 +272,7 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.camelRide,
-    galleryImages: [media.camelRide, media.sunsetTea],
+    galleryImages: [media.camelRide, media.camelTowardsDunes, media.camelSaddle, media.camelRider, media.camelGroup],
     practical: {
       duration: "About 40 minutes",
       price: "From €20 per person",
@@ -283,7 +297,7 @@ const activities: Activity[] = [
       paymentFaq,
     ],
     relatedSlugs: ["sunset-tea", "sandboarding-timlalin", "moroccan-dinner"],
-    relatedGuideSlugs: ["choosing-a-desert-activity", "what-to-pack-timlalin-dunes"],
+    relatedGuideSlugs: ["your-first-camel-ride", "timlalin-dunes-vs-sahara-desert", "timlalin-dunes-with-kids"],
     published: true,
   },
   {
@@ -317,7 +331,7 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.canyonTour,
-    galleryImages: [media.canyonTour],
+    galleryImages: [media.canyonTour, media.canyonVisitor, media.canyonFromAbove, media.coastSeaArch],
     practical: {
       duration: "35–50 minutes",
       price: "From €10 per person",
@@ -342,7 +356,7 @@ const activities: Activity[] = [
       paymentFaq,
     ],
     relatedSlugs: ["quad-biking-timlalin", "buggy-adventure", "camel-ride"],
-    relatedGuideSlugs: ["what-to-pack-timlalin-dunes"],
+    relatedGuideSlugs: ["exploring-the-timlalin-canyon", "tamri-and-the-northern-bald-ibis", "photography-tips-timlalin-dunes"],
     published: true,
   },
   {
@@ -376,7 +390,7 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.sunsetTea,
-    galleryImages: [media.sunsetTea, media.homeHero],
+    galleryImages: [media.sunsetTea, media.sunsetDuneCampfire, media.sunsetCelebration],
     practical: {
       meetingPoint,
       transport: hotelPickup,
@@ -394,7 +408,7 @@ const activities: Activity[] = [
       paymentFaq,
     ],
     relatedSlugs: ["camel-ride", "moroccan-dinner", "sandboarding-timlalin"],
-    relatedGuideSlugs: ["what-to-pack-timlalin-dunes"],
+    relatedGuideSlugs: ["watching-the-sunset-at-timlalin-dunes", "romantic-things-to-do-near-agadir", "best-time-to-visit-timlalin-dunes"],
     published: true,
   },
   {
@@ -428,7 +442,7 @@ const activities: Activity[] = [
       },
     ],
     heroImage: media.moroccanDinner,
-    galleryImages: [media.moroccanDinner, media.sunsetTea],
+    galleryImages: [media.moroccanDinner, media.dinnerLanterns, media.dinnerCampfire],
     practical: {
       meetingPoint,
       transport: hotelPickup,
@@ -446,6 +460,7 @@ const activities: Activity[] = [
       paymentFaq,
     ],
     relatedSlugs: ["sunset-tea", "camel-ride", "canyon-tour"],
+    relatedGuideSlugs: ["moroccan-dinner-in-the-dunes", "romantic-things-to-do-near-agadir", "watching-the-sunset-at-timlalin-dunes"],
     published: true,
   },
 ];

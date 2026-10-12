@@ -38,6 +38,7 @@ export function SiteImage({
       fill
       sizes={sizes}
       className={className}
+      style={image.focus ? { objectPosition: image.focus } : undefined}
       {...(preload ? { preload: true } : { loading: "lazy" as const })}
     />
   );

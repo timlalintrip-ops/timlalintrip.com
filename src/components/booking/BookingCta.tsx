@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { BookActivityButton } from "./BookActivityButton";
 
 type BookingCtaProps = {
   title?: string;
@@ -14,8 +15,6 @@ export function BookingCta({
   activitySlug,
   activityName,
 }: BookingCtaProps) {
-  const href = activitySlug ? `/book-now?activity=${encodeURIComponent(activitySlug)}` : "/book-now";
-
   return (
     <section aria-labelledby="booking-cta-title" className="grain relative overflow-hidden bg-charcoal text-white">
       <div aria-hidden="true" className="absolute top-0 left-0 h-1 w-full bg-orange" />
@@ -28,9 +27,19 @@ export function BookingCta({
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-inverse">{text}</p>
         </div>
         <div className="flex flex-col gap-4 lg:items-end">
-          <ButtonLink href={href} withArrow className="min-h-14 px-8 text-base">
-            {activityName ? `Enquire about ${activityName}` : "Start your enquiry"}
-          </ButtonLink>
+          {activitySlug ? (
+            <BookActivityButton
+              label={`Book ${activityName ?? "this activity"}`}
+              activitySlug={activitySlug}
+              activityName={activityName}
+              withArrow
+              className="min-h-14 px-8 text-base"
+            />
+          ) : (
+            <ButtonLink href="/book-now" withArrow className="min-h-14 px-8 text-base">
+              Start your enquiry
+            </ButtonLink>
+          )}
           <p className="text-sm text-muted-inverse">An enquiry is not a confirmed booking.</p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ActivityCard } from "@/components/activities/ActivityCard";
 import { PracticalDetails } from "@/components/activities/PracticalDetails";
+import { BookActivityButton } from "@/components/booking/BookActivityButton";
 import { BookingCta } from "@/components/booking/BookingCta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -16,7 +17,7 @@ import {
 } from "@/content/activities";
 import { getGuidePath, getGuidesBySlugs } from "@/content/guides";
 import { buildMetadata } from "@/lib/seo";
-import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
+import { breadcrumbSchema, faqSchema, jsonLdGraph } from "@/lib/structured-data";
 
 // Fully static, and unknown slugs render notFound() before streaming (real 404 status).
 export const ensureStatic = "navigation";
@@ -61,12 +62,31 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
   const extraPhotos = activity.galleryImages.filter(
     (image) => image.src && image.id !== activity.heroImage.id,
   );
+  const photoLayout =
+    extraPhotos.length === 1
+      ? { grid: "max-w-md", item: "aspect-[4/5]", sizes: "(min-width: 640px) 448px, 100vw" }
+      : extraPhotos.length === 2
+        ? { grid: "max-w-3xl sm:grid-cols-2", item: "aspect-[4/5]", sizes: "(min-width: 640px) 384px, 100vw" }
+        : extraPhotos.length === 3
+        ? { grid: "sm:grid-cols-3", item: "aspect-[4/5]", sizes: "(min-width: 640px) 33vw, 100vw" }
+        : extraPhotos.length === 4
+          ? {
+              grid: "sm:grid-cols-2 lg:grid-cols-4",
+              item: "aspect-[4/5]",
+              sizes: "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw",
+            }
+          : {
+              grid: "sm:grid-cols-2 lg:grid-cols-3",
+              item: "aspect-[4/5]",
+              sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+            };
   const faqs = activity.faqs ?? [];
-  const bookingHref = `/book-now?activity=${encodeURIComponent(activity.slug)}`;
 
   return (
     <>
-      <JsonLd data={jsonLdGraph(breadcrumbSchema(breadcrumbs))} />
+      <JsonLd
+        data={jsonLdGraph(breadcrumbSchema(breadcrumbs), ...(faqs.length > 0 ? [faqSchema(faqs)] : []))}
+      />
       <PageHero
         eyebrow="Activity"
         title={activity.name}
@@ -75,9 +95,12 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
         image={activity.heroImage}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href={bookingHref} withArrow>
-            Enquire about this activity
-          </ButtonLink>
+          <BookActivityButton
+            label="Book this activity"
+            activitySlug={activity.slug}
+            activityName={activity.shortName}
+            withArrow
+          />
           <ButtonLink href="/activities" variant="outline-light">
             All activities
           </ButtonLink>
@@ -97,7 +120,18 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
               ))}
             </div>
           </div>
-          <PracticalDetails practical={activity.practical} bookingHref={bookingHref} />
+          <PracticalDetails
+            practical={activity.practical}
+            action={
+              <BookActivityButton
+                label="Book now"
+                activitySlug={activity.slug}
+                activityName={activity.shortName}
+                variant="dark"
+                className="w-full"
+              />
+            }
+          />
         </div>
       </section>
 
@@ -127,10 +161,10 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
             <h2 id="photos-title" className="text-headline mb-12 font-semibold">
               Photos
             </h2>
-            <ul className="grid gap-4 sm:grid-cols-2">
+            <ul className={`grid gap-4 ${photoLayout.grid}`}>
               {extraPhotos.map((image) => (
-                <li key={image.id} className="relative aspect-[3/2] overflow-hidden bg-sand-deep">
-                  <SiteImage image={image} sizes="(min-width: 640px) 50vw, 100vw" />
+                <li key={image.id} className={`relative overflow-hidden bg-sand-deep ${photoLayout.item}`}>
+                  <SiteImage image={image} sizes={photoLayout.sizes} />
                 </li>
               ))}
             </ul>

@@ -77,7 +77,10 @@ export const siteConfig: SiteConfig = {
     height: 300,
     alt: "TimlalinTrip logo — desert adventures in the Timlalin Dunes",
   },
-  contact: {},
+  contact: {
+    email: "timlalintrip@gmail.com",
+    whatsapp: "212659727363",
+  },
   socialProfiles: [],
 };
 

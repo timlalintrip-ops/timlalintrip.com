@@ -64,6 +64,8 @@ src/
 
 The form posts to a server action (`src/app/book-now/actions.ts`) that, in this order: rejects automated submissions (honeypot field + 3-second minimum fill time), validates and sanitises every field server-side (length limits, control characters stripped, single-line fields cannot contain line breaks), checks that email delivery is configured, applies the rate limit, and only then calls `deliverBookingEnquiry()` in `src/lib/booking/delivery.ts`.
 
+The same form is used on `/book-now` and in a popup (`BookingDialog`) opened by the "Book" buttons on activity cards and activity pages, with the activity preselected. It offers two options: **Send by email** (the server action below) and **Send on WhatsApp**, shown only when `siteConfig.contact.whatsapp` is set (digits only, e.g. `212600000000`). WhatsApp opens `wa.me` with the details pre-written; nothing is sent to the server, and the visitor sends the message from their own WhatsApp.
+
 `delivery.ts` imports `server-only`, so importing it from a client component fails the build. It sends one email per enquiry with Nodemailer through Gmail SMTP (`smtp.gmail.com`, port 465, TLS; 10 s connection and greeting timeouts, 15 s socket timeout). No confirmation email is sent to the visitor.
 
 Delivery is **not configured yet**. Until all three variables below are set, the page states that online enquiries are not active and the submit button is disabled — nothing is accepted or silently discarded, and no success state is shown.

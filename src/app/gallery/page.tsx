@@ -21,7 +21,8 @@ export const metadata: Metadata = buildMetadata({
   index: isGalleryIndexable(),
 });
 
-const spans = ["sm:col-span-2 sm:row-span-2", "", "", "sm:col-span-2", "", "", "sm:col-span-2", ""];
+const large = "sm:col-span-2 sm:row-span-2";
+const spans = [large, "", "", "", "", "", "", "", "", `${large} sm:col-start-2 lg:col-start-3`, "", "", "", "", "", "", "", ""];
 
 export default function GalleryPage() {
   const hasPhotos = isGalleryIndexable();
@@ -54,9 +55,14 @@ export default function GalleryPage() {
               </PlaceholderNote>
             </div>
           )}
-          <ul className="grid auto-rows-[16rem] grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:auto-rows-[18rem] lg:grid-cols-4">
+          <ul className="grid grid-flow-row-dense auto-rows-[16rem] grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:auto-rows-[18rem] lg:grid-cols-4">
             {galleryImages.map((image, index) => (
-              <li key={image.id} className={`relative overflow-hidden bg-sand-deep ${spans[index % spans.length]}`}>
+              <li
+                key={image.id}
+                className={`relative overflow-hidden bg-sand-deep ${
+                  index + spans.length / 2 <= galleryImages.length ? spans[index % spans.length] : ""
+                }`}
+              >
                 <figure className="h-full">
                   <SiteImage
                     image={image}

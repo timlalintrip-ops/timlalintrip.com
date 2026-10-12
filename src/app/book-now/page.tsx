@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import { getBookingActivityOptions } from "@/components/booking/BookActivityButton";
 import { BookingForm, type ActivityOption } from "@/components/booking/BookingForm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
-import { getPublishedActivities } from "@/content/activities";
 import { isBookingDeliveryConfigured } from "@/lib/booking/delivery";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
-import { bookingLimits, GENERAL_ENQUIRY, isValidActivityOption } from "@/lib/validation";
+import { bookingLimits, isValidActivityOption } from "@/lib/validation";
 
 const breadcrumbs = [
   { name: "Home", path: "/" },
@@ -40,6 +41,7 @@ const steps = [
 
 type FormProps = {
   activityOptions: ActivityOption[];
+  whatsappNumber?: string;
 };
 
 async function BookingFormWithSelection({
@@ -63,10 +65,8 @@ async function BookingFormWithSelection({
 
 export default function BookNowPage({ searchParams }: PageProps<"/book-now">) {
   const formProps: FormProps = {
-    activityOptions: [
-      ...getPublishedActivities().map((activity) => ({ value: activity.slug, label: activity.shortName })),
-      { value: GENERAL_ENQUIRY, label: "Not sure yet — help me choose" },
-    ],
+    activityOptions: getBookingActivityOptions(),
+    whatsappNumber: siteConfig.contact.whatsapp,
   };
 
   return (

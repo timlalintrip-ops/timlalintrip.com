@@ -53,6 +53,11 @@ function looksAutomated(formData: FormData): boolean {
   return false;
 }
 
+/** Lets statically rendered pages ask at request time whether email enquiries are active. */
+export async function getEmailBookingAvailability(): Promise<boolean> {
+  return isBookingDeliveryConfigured();
+}
+
 export async function submitBookingEnquiry(
   _previousState: BookingFormState,
   formData: FormData,
