@@ -1,5 +1,5 @@
 # TimlalinTrip.com — Version 1  
-
+ 
 Tourism website for desert activities in the Timlalin Dunes (coastal dunes north of Agadir, near Tamri, Morocco).
 
 **Stack:** Next.js 16.4 (App Router, Cache Components, Partial Prefetching, Turbopack) · React 19.3 · TypeScript (strict) · Tailwind CSS 4 · Nodemailer (booking emails via Gmail SMTP). No database, CMS, UI kit or animation library. Hosted on Vercel.
