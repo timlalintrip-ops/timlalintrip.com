@@ -7,6 +7,7 @@ import {
   siteConfig,
   type NavItem,
 } from "@/lib/site-config";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { CopyrightYear } from "./CopyrightYear";
 import { Logo } from "./Logo";
 
@@ -91,6 +92,7 @@ export function SiteFooter() {
               <Logo height={64} loading="lazy" />
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted-inverse">{siteConfig.description}</p>
+            <SocialLinks className="mt-6" />
           </div>
           <FooterColumn title="Explore" items={footerNavigation} />
           <FooterColumn title="Activities" items={activityLinks} />

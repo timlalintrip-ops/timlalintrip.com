@@ -5,6 +5,7 @@ import { ActivityCard } from "@/components/activities/ActivityCard";
 import { PracticalDetails } from "@/components/activities/PracticalDetails";
 import { BookActivityButton } from "@/components/booking/BookActivityButton";
 import { BookingCta } from "@/components/booking/BookingCta";
+import { ReviewsSection } from "@/components/reviews/ReviewsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageHero } from "@/components/ui/PageHero";
@@ -16,6 +17,7 @@ import {
   getRelatedActivities,
 } from "@/content/activities";
 import { getGuidePath, getGuidesBySlugs } from "@/content/guides";
+import { getReviewsForActivity } from "@/content/reviews";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, jsonLdGraph } from "@/lib/structured-data";
 
@@ -81,6 +83,7 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
               sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
             };
   const faqs = activity.faqs ?? [];
+  const reviews = getReviewsForActivity(activity.slug);
 
   return (
     <>
@@ -171,6 +174,12 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
           </div>
         </section>
       )}
+
+      <ReviewsSection
+        reviews={reviews}
+        title={`What guests say about ${activity.shortName.toLowerCase()}`}
+        className="border-t border-sand-line"
+      />
 
       {faqs.length > 0 && (
         <section aria-labelledby="faq-title" className="py-20 sm:py-28">

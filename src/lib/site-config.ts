@@ -22,6 +22,7 @@ export type ContactDetails = {
 };
 
 export type SocialProfile = {
+  network: "facebook" | "instagram";
   label: string;
   url: string;
 };
@@ -82,7 +83,10 @@ export const siteConfig: SiteConfig = {
     email: "timlalintrip@gmail.com",
     whatsapp: "212659727363",
   },
-  socialProfiles: [],
+  socialProfiles: [
+    { network: "facebook", label: "Facebook", url: "https://www.facebook.com/share/1ERAhdd3wq/" },
+    { network: "instagram", label: "Instagram", url: "https://www.instagram.com/timlalin_trip" },
+  ],
 };
 
 export type NavItem = {

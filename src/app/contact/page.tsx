@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageHero } from "@/components/ui/PageHero";
 import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { buildMetadata } from "@/lib/seo";
 import { hasContactDetails, siteConfig } from "@/lib/site-config";
 import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
@@ -133,6 +134,12 @@ export default function ContactPage() {
               Contact details
             </h2>
             <ContactDetails />
+            {siteConfig.socialProfiles.length > 0 && (
+              <div className="mt-8">
+                <p className="mb-3 text-xs font-semibold tracking-[0.16em] text-muted uppercase">Follow us</p>
+                <SocialLinks tone="dark" />
+              </div>
+            )}
             <p className="mt-8 text-sm leading-relaxed text-muted">
               Planning your visit? Our{" "}
               <Link href="/travel-guide" className="font-semibold text-orange-deep underline underline-offset-4">
