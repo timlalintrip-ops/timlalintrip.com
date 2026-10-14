@@ -84,7 +84,8 @@ export function SiteFooter() {
 
   return (
     <footer className="grain bg-charcoal text-white">
-      <div className="container-site pt-20 pb-10">
+      {/* Extra bottom space on small screens keeps the floating WhatsApp button off the credits. */}
+      <div className="container-site pt-20 pb-28 sm:pb-10">
         <div className="grid gap-12 border-b border-charcoal-line pb-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             {/* Light plate: the logo's dark lettering needs a light background. */}
@@ -101,9 +102,22 @@ export function SiteFooter() {
             <FooterColumn title="Legal" items={legalNavigation} />
           </div>
         </div>
-        <p className="pt-8 text-xs text-muted-inverse">
-          © <CopyrightYear /> {siteConfig.name}. All rights reserved.
-        </p>
+        <div className="flex flex-col gap-3 pt-8 text-xs text-muted-inverse sm:flex-row sm:items-center sm:justify-between sm:pr-20 2xl:pr-0">
+          <p>
+            © <CopyrightYear /> {siteConfig.name}. All rights reserved.
+          </p>
+          <p>
+            Website by{" "}
+            <a
+              href="https://mehdicodes.com"
+              target="_blank"
+              rel="noopener"
+              className="link-underline font-semibold text-white/80 transition-colors hover:text-orange"
+            >
+              mehdicodes.com
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
