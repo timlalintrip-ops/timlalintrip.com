@@ -7,6 +7,7 @@ import { SiteImage } from "@/components/ui/SiteImage";
 import { aboutContent } from "@/content/about";
 import { valuePropositions } from "@/content/home";
 import { media } from "@/content/media";
+import { staticPageSeo } from "@/content/static-pages";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
 
@@ -15,12 +16,7 @@ const breadcrumbs = [
   { name: "About Us", path: "/about-us" },
 ];
 
-export const metadata: Metadata = buildMetadata({
-  title: "About Us",
-  description:
-    "Meet TimlalinTrip, a tourism brand dedicated to outdoor experiences in the Timlalin Dunes on Morocco's Atlantic coast north of Agadir.",
-  path: "/about-us",
-});
+export const metadata: Metadata = buildMetadata(staticPageSeo.about);
 
 export default function AboutPage() {
   return (

@@ -6,6 +6,7 @@ import { getBookingActivityOptions } from "@/components/booking/BookActivityButt
 import { BookingForm, type ActivityOption } from "@/components/booking/BookingForm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
+import { staticPageSeo } from "@/content/static-pages";
 import { isBookingDeliveryConfigured } from "@/lib/booking/delivery";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
@@ -17,12 +18,7 @@ const breadcrumbs = [
   { name: "Book Now", path: "/book-now" },
 ];
 
-export const metadata: Metadata = buildMetadata({
-  title: "Book Your Timlalin Dunes Adventure",
-  description:
-    "Send TimlalinTrip a booking enquiry for sandboarding, quad biking, buggy or camel rides, sunset tea or dinner in the Timlalin Dunes. We reply to confirm details.",
-  path: "/book-now",
-});
+export const metadata: Metadata = buildMetadata(staticPageSeo.bookNow);
 
 const steps = [
   {
@@ -110,7 +106,7 @@ export default function BookNowPage({ searchParams }: PageProps<"/book-now">) {
             <p className="mt-8 text-sm leading-relaxed text-muted">
               Still deciding? Browse the{" "}
               <Link href="/activities" className="font-semibold text-orange-deep underline underline-offset-4">
-                activities
+                activities and prices
               </Link>{" "}
               or read our{" "}
               <Link
@@ -118,6 +114,13 @@ export default function BookNowPage({ searchParams }: PageProps<"/book-now">) {
                 className="font-semibold text-orange-deep underline underline-offset-4"
               >
                 guide to choosing a dune activity
+              </Link>
+              . Visiting from the city? See{" "}
+              <Link
+                href="/travel-guide/how-to-get-to-timlalin-dunes-from-agadir"
+                className="font-semibold text-orange-deep underline underline-offset-4"
+              >
+                how to get to Timlalin from Agadir
               </Link>
               .
             </p>

@@ -295,7 +295,7 @@ export const planningGuides: Guide[] = [
       {
         question: "Can I do several activities on the same day?",
         answer:
-          "Yes. Most activities last between 40 minutes and an hour, so it is easy to combine two, three or more in one visit.",
+          "Yes. A quad ride lasts about one hour, a camel ride about 40 minutes and the canyon tour 35–50 minutes, so those experiences combine easily. Duration for sandboarding, buggy tours, sunset tea and dinner is confirmed when you enquire.",
       },
       {
         question: "Is half a day enough for the Timlalin Dunes?",
@@ -305,8 +305,13 @@ export const planningGuides: Guide[] = [
     ],
     heroImage: media.quadTwoRiders,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["quad-biking-timlalin", "camel-ride", "moroccan-dinner"],
-    relatedGuideSlugs: ["choosing-a-desert-activity", "best-time-to-visit-timlalin-dunes"],
+    relatedGuideSlugs: [
+      "choosing-a-desert-activity",
+      "how-to-get-to-timlalin-dunes-from-agadir",
+      "best-time-to-visit-timlalin-dunes",
+    ],
     published: true,
   },
   {

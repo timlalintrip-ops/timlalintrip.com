@@ -7,22 +7,25 @@ import { Hero } from "@/components/home/Hero";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { ReviewsSection } from "@/components/reviews/ReviewsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { media } from "@/content/media";
 import { guestReviews, reviewSource } from "@/content/reviews";
+import { staticPageSeo } from "@/content/static-pages";
 import { buildMetadata } from "@/lib/seo";
-import { jsonLdGraph, organizationSchema, websiteSchema } from "@/lib/structured-data";
+import { absoluteUrl } from "@/lib/site-config";
+import { jsonLdGraph, organizationSchema, touristAttractionSchema, websiteSchema } from "@/lib/structured-data";
 
-export const metadata: Metadata = buildMetadata({
-  title: "TimlalinTrip | Timlalin Dunes Adventures near Agadir",
-  absoluteTitle: true,
-  description:
-    "Sandboarding, quad biking, buggy and camel rides, sunset tea and Moroccan dinner in the Timlalin Dunes, the coastal dunes north of Agadir. Send a booking enquiry.",
-  path: "/",
-});
+export const metadata: Metadata = buildMetadata(staticPageSeo.home);
 
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={jsonLdGraph(organizationSchema(), websiteSchema())} />
+      <JsonLd
+        data={jsonLdGraph(
+          organizationSchema(),
+          websiteSchema(),
+          touristAttractionSchema(media.destination.src ? absoluteUrl(media.destination.src) : undefined),
+        )}
+      />
       <Hero />
       <ActivitiesSection />
       <WhyChoose />

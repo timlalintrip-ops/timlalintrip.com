@@ -82,7 +82,7 @@ export const experienceGuides: Guide[] = [
   {
     slug: "moroccan-dinner-in-the-dunes",
     title: "A Moroccan Dinner in the Dunes: Food, Tea and Traditions",
-    metaTitle: "Moroccan Dinner in the Dunes near Agadir",
+    metaTitle: "Moroccan Dinner in the Dunes: What to Expect",
     metaDescription:
       "What to expect from a traditional Moroccan dinner in the Timlalin Dunes near Agadir: classic dishes, mint tea traditions, dietary needs and the desert setting.",
     category: "experiences",
@@ -301,7 +301,7 @@ export const experienceGuides: Guide[] = [
     excerpt:
       "The best light, simple composition ideas and how to keep sand out of your camera — for phones and cameras alike.",
     intro:
-      "With golden dunes, the Atlantic Ocean and sculpted canyon walls all in one place, Timlalin is a dream for photographers — whether you shoot with a professional camera or a smartphone. These tips will help you bring home images that do the landscape justice.",
+      "With golden dunes, the Atlantic Ocean and sculpted canyon walls all in one place, Timlalin is a dream for photographers — whether you shoot with a professional camera or a smartphone. These tips will help you bring home images that do the landscape justice. Browse the [photo gallery](/gallery) for examples from the same coast.",
     sections: [
       {
         heading: "Chase the low light",
@@ -363,6 +363,7 @@ export const experienceGuides: Guide[] = [
     ],
     heroImage: media.sandboardingOceanView,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["sunset-tea", "canyon-tour", "camel-ride"],
     relatedGuideSlugs: ["watching-the-sunset-at-timlalin-dunes", "exploring-the-timlalin-canyon"],
     published: true,

@@ -70,7 +70,7 @@ export const siteConfig: SiteConfig = {
   language: "en",
   tagline: "Desert adventures in the Timlalin Dunes",
   description:
-    "Sandboarding, quad biking, buggy rides, camel rides and sunset experiences in the Timlalin Dunes, the coastal dune landscape north of Agadir, Morocco.",
+    "Sandboarding, quad biking, buggy rides, camel rides and sunset experiences in the Timlalin Dunes near Tamri, the coastal dune landscape north of Agadir, Morocco.",
   logo: { src: "/logo/logo.png", width: 500, height: 300 },
   favicon: { src: "/favicon.ico", width: 40, height: 40 },
   socialImage: {
@@ -117,8 +117,18 @@ export const legalNavigation: NavItem[] = [
   { label: "Terms and Conditions", href: "/terms-and-conditions" },
 ];
 
+export const planningNavigation: NavItem[] = [
+  { label: "From Agadir", href: "/travel-guide/how-to-get-to-timlalin-dunes-from-agadir" },
+  { label: "Sample itineraries", href: "/travel-guide/timlalin-dunes-day-itinerary" },
+  { label: "Choosing an activity", href: "/travel-guide/choosing-a-desert-activity" },
+  { label: "Best time to visit", href: "/travel-guide/best-time-to-visit-timlalin-dunes" },
+  { label: "Dune photos", href: "/gallery" },
+];
+
 export function absoluteUrl(path = "/"): string {
-  return new URL(path, siteConfig.url).toString();
+  const url = new URL(path, `${siteConfig.url}/`).toString();
+  // Keep the homepage canonical slash-free so sitemap URLs match the rendered tag.
+  return path === "/" ? url.replace(/\/$/, "") : url;
 }
 
 export function hasContactDetails(contact: ContactDetails = siteConfig.contact): boolean {

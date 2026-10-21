@@ -386,7 +386,7 @@ export const activityGuides: Guide[] = [
   {
     slug: "exploring-the-timlalin-canyon",
     title: "Exploring the Timlalin Canyon: A Hidden Side of the Coast",
-    metaTitle: "Timlalin Canyon Tour near Agadir – Guide",
+    metaTitle: "Exploring Timlalin Canyon near Tamri",
     metaDescription:
       "Discover the Timlalin canyon near Tamri: sculpted sandstone walls, narrow passages and a 35–50 minute guided walk from €10. What to expect and what to wear.",
     category: "activities",
@@ -455,14 +455,14 @@ export const activityGuides: Guide[] = [
   {
     slug: "watching-the-sunset-at-timlalin-dunes",
     title: "Watching the Sunset at the Timlalin Dunes: Tea, Timing and Tips",
-    metaTitle: "Sunset Tea at Timlalin Dunes near Agadir",
+    metaTitle: "Sunset at Timlalin: Timing & Tea Tips",
     metaDescription:
       "How to enjoy the sunset over the Atlantic from the Timlalin Dunes near Agadir: timing, Moroccan mint tea, what to bring and how to combine it with a camel ride.",
     category: "activities",
     excerpt:
       "Golden light, Moroccan mint tea and the sun sinking into the Atlantic — how to plan the perfect sunset on the dunes.",
     intro:
-      "Of all the moments you can experience at Timlalin, sunset is the one visitors talk about most. As the sun drops towards the Atlantic, the dunes glow gold, then copper, and the ocean turns silver. Sharing a glass of Moroccan mint tea on a dune crest at that moment is simple, peaceful and unforgettable.",
+      "Of all the moments you can experience at Timlalin, sunset is the one visitors talk about most. As the sun drops towards the Atlantic, the dunes glow gold, then copper, and the ocean turns silver. This guide covers timing, what to bring and how to combine the hour with a camel ride. To book the tea itself, use the [sunset tea activity page](/activities/sunset-tea).",
     sections: [
       {
         heading: "Why sunset at Timlalin is special",
@@ -514,6 +514,7 @@ export const activityGuides: Guide[] = [
     ],
     heroImage: media.sunsetTea,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["sunset-tea", "camel-ride", "moroccan-dinner"],
     relatedGuideSlugs: ["romantic-things-to-do-near-agadir", "moroccan-dinner-in-the-dunes"],
     published: true,

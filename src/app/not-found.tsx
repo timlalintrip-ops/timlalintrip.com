@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { getActivityPath, getPublishedActivities } from "@/content/activities";
+import { missingPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Page not found",
-  robots: { index: false, follow: true },
-};
+export const metadata: Metadata = missingPageMetadata("Page not found");
 
 export default function NotFound() {
   const activities = getPublishedActivities().slice(0, 4);

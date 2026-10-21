@@ -19,8 +19,15 @@ import {
 } from "@/content/activities";
 import { getGuidePath, getGuidesBySlugs } from "@/content/guides";
 import { getReviewsForActivity } from "@/content/reviews";
-import { buildMetadata } from "@/lib/seo";
-import { breadcrumbSchema, faqSchema, jsonLdGraph } from "@/lib/structured-data";
+import { buildMetadata, missingPageMetadata } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLdGraph,
+  organizationSchema,
+  touristAttractionSchema,
+  touristTripSchema,
+} from "@/lib/structured-data";
 
 // Fully static, and unknown slugs render notFound() before streaming (real 404 status).
 export const ensureStatic = "navigation";
@@ -32,7 +39,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/activities/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const activity = getActivityBySlug(slug);
-  if (!activity) return {};
+  if (!activity) return missingPageMetadata("Activity not found");
 
   return buildMetadata({
     title: activity.metaTitle,
@@ -89,7 +96,13 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
   return (
     <>
       <JsonLd
-        data={jsonLdGraph(breadcrumbSchema(breadcrumbs), ...(faqs.length > 0 ? [faqSchema(faqs)] : []))}
+        data={jsonLdGraph(
+          organizationSchema(),
+          touristAttractionSchema(),
+          touristTripSchema(activity, path),
+          breadcrumbSchema(breadcrumbs),
+          ...(faqs.length > 0 ? [faqSchema(faqs)] : []),
+        )}
       />
       <PageHero
         eyebrow="Activity"

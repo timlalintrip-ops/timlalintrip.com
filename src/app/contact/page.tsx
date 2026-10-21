@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageHero } from "@/components/ui/PageHero";
 import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { staticPageSeo } from "@/content/static-pages";
 import { buildMetadata } from "@/lib/seo";
 import { hasContactDetails, siteConfig } from "@/lib/site-config";
 import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
@@ -15,10 +16,7 @@ const breadcrumbs = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact Us",
-  description:
-    "Get in touch with TimlalinTrip about activities in the Timlalin Dunes north of Agadir. Send an enquiry with your preferred date and group size.",
-  path: "/contact",
+  ...staticPageSeo.contact,
   // A contact page without any contact details is thin content; index it once details are configured.
   index: hasContactDetails(siteConfig.contact),
 });

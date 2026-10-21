@@ -4,6 +4,7 @@ import {
   footerNavigation,
   hasContactDetails,
   legalNavigation,
+  planningNavigation,
   siteConfig,
   type NavItem,
 } from "@/lib/site-config";
@@ -86,7 +87,7 @@ export function SiteFooter() {
     <footer className="grain bg-charcoal text-white">
       {/* Extra bottom space on small screens keeps the floating WhatsApp button off the credits. */}
       <div className="container-site pt-20 pb-28 sm:pb-10">
-        <div className="grid gap-12 border-b border-charcoal-line pb-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 border-b border-charcoal-line pb-14 md:grid-cols-2 xl:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             {/* Light plate: the logo's dark lettering needs a light background. */}
             <div className="inline-block bg-sand px-4 py-3">
@@ -97,6 +98,7 @@ export function SiteFooter() {
           </div>
           <FooterColumn title="Explore" items={footerNavigation} />
           <FooterColumn title="Activities" items={activityLinks} />
+          <FooterColumn title="Plan a trip" items={planningNavigation} />
           <div className="space-y-12">
             <ContactColumn />
             <FooterColumn title="Legal" items={legalNavigation} />

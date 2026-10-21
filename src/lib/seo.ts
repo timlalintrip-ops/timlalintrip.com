@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { absoluteUrl, siteConfig } from "./site-config";
 
-type PageMetadataInput = {
+export type PageMetadataInput = {
   title: string;
   description: string;
   path: string;
@@ -15,6 +15,18 @@ type PageMetadataInput = {
   /** Path inside /public for a page-specific sharing image. */
   image?: { src: string; width: number; height: number; alt: string };
 };
+
+const notFoundDescription =
+  "This page does not exist or has moved. Browse Timlalin Dunes activities or return to the homepage.";
+
+/** Metadata for unknown dynamic slugs that still resolve a document. */
+export function missingPageMetadata(title: string): Metadata {
+  return {
+    title,
+    description: notFoundDescription,
+    robots: { index: false, follow: true },
+  };
+}
 
 export const defaultSocialImage = {
   url: siteConfig.socialImage.src,
@@ -48,7 +60,19 @@ export function buildMetadata({
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical },
-    robots: index ? { index: true, follow: true } : { index: false, follow: true },
+    robots: index
+      ? {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        }
+      : { index: false, follow: true },
     openGraph: {
       type: openGraphType,
       url: canonical,

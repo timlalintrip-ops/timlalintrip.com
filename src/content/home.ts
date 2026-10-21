@@ -5,9 +5,9 @@
  */
 
 export const heroContent = {
-  eyebrow: "Timlalin Dunes · Atlantic coast of Morocco",
+  eyebrow: "Timlalin Dunes · Tamri, north of Agadir",
   title: "Discover the Wild Beauty of Timlalin Dunes",
-  text: "Golden dunes rolling down to the Atlantic, north of Agadir. Sandboard their slopes, cross them by quad, buggy or camel, and stay for tea as the sun sets over the ocean.",
+  text: "Plan a Timlalin trip from Agadir to the coastal dunes near Tamri — also written Timlaline. Sandboard their slopes, cross them by quad, buggy or camel, and stay for tea as the sun sets over the Atlantic.",
 };
 
 export const valuePropositions = [
@@ -33,8 +33,8 @@ export const destinationContent = {
   eyebrow: "The destination",
   title: "Where the dunes meet the Atlantic",
   paragraphs: [
-    "Timlalin — also written Timlaline — is a coastal dune landscape on Morocco's Atlantic shore, north of Agadir near the village of Tamri. Here, sand dunes run almost to the water's edge, creating a scene that feels far removed from the beach resorts further south.",
-    "This is not the Sahara. It is something rarer: a dune field shaped by ocean winds, with sea views from the crests and sea air even on hot afternoons. The coastal N1 road connects the area with Agadir and the surf villages along the way, making it a natural day out for visitors staying in the region.",
-    "The landscape changes with the light. Mornings are bright and clear, while late afternoon turns the sand copper and gold — the reason so many visitors choose to stay for sunset.",
+    "Timlalin — also written Timlaline — is a coastal dune landscape on Morocco's Atlantic shore, north of Agadir near the village of [Tamri](/travel-guide/tamri-and-the-northern-bald-ibis). Here, sand dunes run almost to the water's edge, creating a scene that feels far removed from the beach resorts further south.",
+    "This is not the Sahara. It is something rarer: a dune field shaped by ocean winds, with sea views from the crests and sea air even on hot afternoons. The coastal N1 road makes it a natural [trip from Agadir](/travel-guide/how-to-get-to-timlalin-dunes-from-agadir) and from the surf villages along the way. See how it compares with a [Sahara journey](/travel-guide/timlalin-dunes-vs-sahara-desert).",
+    "The landscape changes with the light. Mornings are bright and clear, while late afternoon turns the sand copper and gold — the reason so many visitors choose to stay for [sunset tea](/activities/sunset-tea). See [photos of the dunes](/gallery).",
   ],
 };

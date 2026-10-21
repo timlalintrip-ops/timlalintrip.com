@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BookingCta } from "@/components/booking/BookingCta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
 import { PlaceholderNote } from "@/components/ui/PlaceholderNote";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { galleryImages, isGalleryIndexable } from "@/content/media";
+import { staticPageSeo } from "@/content/static-pages";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
 
@@ -14,10 +16,7 @@ const breadcrumbs = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Photo Gallery: Timlalin Dunes",
-  description:
-    "Photos of the Timlalin Dunes and TimlalinTrip experiences on Morocco's Atlantic coast north of Agadir: sandboarding, rides, sunsets and more.",
-  path: "/gallery",
+  ...staticPageSeo.gallery,
   index: isGalleryIndexable(),
 });
 
@@ -32,13 +31,24 @@ export default function GalleryPage() {
       <JsonLd data={jsonLdGraph(breadcrumbSchema(breadcrumbs))} />
       <PageHero
         eyebrow="Gallery"
-        title="Moments from the dunes"
-        intro="Golden sand, Atlantic light and the experiences that fill a day at Timlalin."
+        title="Photos of the Timlalin Dunes"
+        intro="Sandboarding, quad biking, camel rides, the canyon and Atlantic sunsets — photographs from TimlalinTrip days on the coastal dunes near Tamri, north of Agadir."
         breadcrumbs={breadcrumbs}
       />
 
       <section aria-label="Photo gallery" className="py-16 sm:py-24">
         <div className="container-site">
+          <p className="mb-12 max-w-3xl text-lg leading-relaxed text-muted">
+            These photographs are from days on the dunes, not stock imagery. For composition and light, read the{" "}
+            <Link href="/travel-guide/photography-tips-timlalin-dunes" className="font-semibold text-orange-deep underline underline-offset-4">
+              photography tips
+            </Link>
+            . To book an activity in the same landscape, browse{" "}
+            <Link href="/activities" className="font-semibold text-orange-deep underline underline-offset-4">
+              Timlalin activities
+            </Link>
+            .
+          </p>
           {!hasPhotos && (
             <div className="mb-12 max-w-2xl">
               <PlaceholderNote

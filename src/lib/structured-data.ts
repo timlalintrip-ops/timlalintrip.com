@@ -1,3 +1,4 @@
+import type { Activity } from "@/content/activities";
 import { stripRichText, type Guide } from "@/content/guides";
 import { absoluteUrl, siteConfig } from "./site-config";
 
@@ -15,6 +16,9 @@ export type BreadcrumbItem = {
 
 const organizationId = `${siteConfig.url}/#organization`;
 const websiteId = `${siteConfig.url}/#website`;
+const attractionId = `${siteConfig.url}/#timlalin-dunes`;
+
+const servedAreas = ["Agadir", "Taghazout", "Imsouane", "Tamri"];
 
 export function organizationSchema(): JsonLdObject {
   const { contact, logo, socialProfiles } = siteConfig;
@@ -23,11 +27,48 @@ export function organizationSchema(): JsonLdObject {
     "@id": organizationId,
     name: siteConfig.name,
     url: siteConfig.url,
+    description: siteConfig.description,
+    areaServed: servedAreas.map((name) => ({ "@type": "Place", name })),
     ...(siteConfig.legalName ? { legalName: siteConfig.legalName } : {}),
     ...(logo ? { logo: absoluteUrl(logo.src) } : {}),
     ...(contact.email ? { email: contact.email } : {}),
     ...(contact.phone ? { telephone: contact.phone } : {}),
     ...(socialProfiles.length > 0 ? { sameAs: socialProfiles.map((profile) => profile.url) } : {}),
+  };
+}
+
+/**
+ * The Timlalin Dunes as a place. No coordinates, ratings or opening hours —
+ * those have not been published as verified business facts.
+ */
+export function touristAttractionSchema(imageUrl?: string): JsonLdObject {
+  return {
+    "@type": "TouristAttraction",
+    "@id": attractionId,
+    name: "Timlalin Dunes",
+    alternateName: ["Timlaline", "Timlalin"],
+    description:
+      "Coastal dunes near Tamri on Morocco's Atlantic shore, north of Agadir. Also written Timlaline.",
+    url: siteConfig.url,
+    ...(imageUrl ? { image: [imageUrl] } : {}),
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tamri",
+      addressCountry: "MA",
+    },
+  };
+}
+
+/** Bookable activity. Prices stay in visible copy; Offer markup is omitted for "from" prices. */
+export function touristTripSchema(activity: Activity, path: string): JsonLdObject {
+  return {
+    "@type": "TouristTrip",
+    name: activity.name,
+    description: activity.metaDescription,
+    url: absoluteUrl(path),
+    ...(activity.heroImage.src ? { image: [absoluteUrl(activity.heroImage.src)] } : {}),
+    provider: { "@id": organizationId },
+    itinerary: { "@id": attractionId },
   };
 }
 

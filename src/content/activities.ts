@@ -486,3 +486,51 @@ export function hasPracticalInfo(practical: PracticalInfo | undefined): practica
     Array.isArray(value) ? value.length > 0 : Boolean(value),
   );
 }
+
+export function joinEnglishList(items: string[]): string {
+  if (items.length <= 1) return items[0] ?? "";
+  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+}
+
+/** FAQs for the activities hub — prices are derived from confirmed practical fields. */
+export function getActivitiesHubFaqs(): Faq[] {
+  const published = getPublishedActivities();
+  const priced = published.flatMap((activity) => {
+    const price = activity.practical?.price;
+    return price ? [`${activity.shortName.toLowerCase()} ${price.replace(/^From /i, "from ")}`] : [];
+  });
+  const unpriced = published
+    .filter((activity) => !activity.practical?.price)
+    .map((activity) => activity.shortName.toLowerCase());
+  const timed = published.flatMap((activity) => {
+    const duration = activity.practical?.duration;
+    return duration ? [`${activity.shortName.toLowerCase()} ${duration.toLowerCase()}`] : [];
+  });
+
+  return [
+    {
+      question: "How much does a Timlalin trip cost?",
+      answer: [
+        priced.length > 0 ? `Starting prices: ${joinEnglishList(priced)}.` : null,
+        unpriced.length > 0 ? `${joinEnglishList(unpriced)} ${unpriced.length === 1 ? "is" : "are"} confirmed when you enquire.` : null,
+        "You pay on arrival — no advance payment.",
+      ]
+        .filter(Boolean)
+        .join(" "),
+    },
+    {
+      question: "Can I do a Timlalin trip from Agadir?",
+      answer:
+        "Yes. The meeting point is the Timlalin Dunes near Tamri, about 60 km north of Agadir. Hotel pickup from Agadir, Taghazout or Imsouane can be added as an extra. Driving directions are in the guide [from Agadir](/travel-guide/how-to-get-to-timlalin-dunes-from-agadir).",
+    },
+    {
+      question: "Can I combine several activities in one day?",
+      answer: [
+        timed.length > 0
+          ? `Published durations: ${joinEnglishList(timed)}. Those experiences combine easily in one visit.`
+          : "Activities can be combined in one visit.",
+        "[Sample itineraries](/travel-guide/timlalin-dunes-day-itinerary) show a half day, a sunset afternoon and a full day with dinner.",
+      ].join(" "),
+    },
+  ];
+}

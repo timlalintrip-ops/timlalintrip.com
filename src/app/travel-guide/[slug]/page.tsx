@@ -19,7 +19,7 @@ import {
   slugifyHeading,
 } from "@/content/guides";
 import { formatDate } from "@/lib/format";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, missingPageMetadata } from "@/lib/seo";
 import { articleSchema, breadcrumbSchema, faqSchema, jsonLdGraph, organizationSchema } from "@/lib/structured-data";
 
 // Fully static, and unknown slugs render notFound() before streaming (real 404 status).
@@ -32,7 +32,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/travel-guide/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const guide = getGuideBySlug(slug);
-  if (!guide) return {};
+  if (!guide) return missingPageMetadata("Guide not found");
 
   return buildMetadata({
     title: guide.metaTitle,

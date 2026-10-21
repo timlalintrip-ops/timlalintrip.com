@@ -15,6 +15,7 @@ import {
   guideCategories,
   type GuideCategory,
 } from "@/content/guides";
+import { staticPageSeo } from "@/content/static-pages";
 import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site-config";
 import { breadcrumbSchema, jsonLdGraph } from "@/lib/structured-data";
@@ -26,12 +27,7 @@ const breadcrumbs = [
 
 const FEATURED_SLUG = "things-to-do-near-agadir";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Timlalin Dunes & Agadir Travel Guide",
-  description:
-    "Free travel guides for the Timlalin Dunes near Agadir: how to get there, the best time to visit, quad biking, sandboarding and camel ride tips, itineraries and more.",
-  path: "/travel-guide",
-});
+export const metadata: Metadata = buildMetadata(staticPageSeo.travelGuide);
 
 export default function TravelGuidePage() {
   const guides = getPublishedGuides();
@@ -87,7 +83,7 @@ export default function TravelGuidePage() {
             <article className="group relative grid items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-14">
               <div className="relative aspect-[3/2] overflow-hidden bg-sand-deep">
                 <div className="absolute inset-0 transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]">
-                  <SiteImage image={featured.heroImage} sizes="(min-width: 1024px) 58vw, 100vw" preload meaningful={false} />
+                  <SiteImage image={featured.heroImage} sizes="(min-width: 1024px) 58vw, 100vw" preload />
                 </div>
               </div>
               <div>
