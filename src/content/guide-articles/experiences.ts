@@ -89,7 +89,7 @@ export const experienceGuides: Guide[] = [
     excerpt:
       "Slow-cooked dishes, fresh bread, mint tea and the stars appearing overhead — what makes dinner in the dunes so memorable.",
     intro:
-      "After a day of sand, wind and sun, there is no better way to end your Timlalin adventure than with a traditional Moroccan dinner in the dunes. Warm food, sweet mint tea and the desert sky create an evening that many visitors remember as the highlight of their trip.",
+      "This guide is about the meal itself: Moroccan dishes, mint tea, how food is shared, and how to mention dietary needs. To book the evening, use the [Moroccan dinner activity page](/activities/moroccan-dinner) — the menu and setting are confirmed when you enquire.",
     sections: [
       {
         heading: "The flavours of Moroccan cooking",
@@ -117,7 +117,7 @@ export const experienceGuides: Guide[] = [
       {
         heading: "A setting under the open sky",
         paragraphs: [
-          "Away from city lights, the dunes offer a special atmosphere as evening falls: lanterns, the glow of a fire and, on clear nights, stars appearing overhead. It is a romantic setting for couples, a memorable celebration for families and a perfect way for groups to share stories after the day's activities.",
+          "Away from city lights, evening in the dunes is about atmosphere more than the plate: lanterns, the glow of a fire and, on clear nights, stars appearing overhead. Bring a warm layer — the coast cools down after dark.",
         ],
       },
       {
@@ -146,6 +146,7 @@ export const experienceGuides: Guide[] = [
     ],
     heroImage: media.dinnerCampfire,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["moroccan-dinner", "sunset-tea", "camel-ride"],
     relatedGuideSlugs: ["watching-the-sunset-at-timlalin-dunes", "romantic-things-to-do-near-agadir"],
     published: true,

@@ -9,6 +9,7 @@ import { ReviewsSection } from "@/components/reviews/ReviewsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { PageHero } from "@/components/ui/PageHero";
+import { RichText } from "@/components/ui/RichText";
 import { SiteImage } from "@/components/ui/SiteImage";
 import {
   getActivityBySlug,
@@ -117,9 +118,11 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
             <h2 id="overview-title" className="text-headline font-semibold">
               About the experience
             </h2>
-            <div className="mt-8 space-y-5 text-lg leading-relaxed text-charcoal/80">
+            <div className="mt-8 space-y-5 text-lg leading-relaxed text-charcoal/80 [&_a]:font-semibold [&_a]:text-orange-deep [&_a]:underline [&_a]:underline-offset-4">
               {activity.overview.map((paragraph) => (
-                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                <p key={paragraph.slice(0, 32)}>
+                  <RichText text={paragraph} />
+                </p>
               ))}
             </div>
           </div>
@@ -196,7 +199,9 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
                       +
                     </span>
                   </summary>
-                  <p className="mt-4 leading-relaxed text-muted">{faq.answer}</p>
+                  <p className="mt-4 leading-relaxed text-muted [&_a]:font-semibold [&_a]:text-orange-deep [&_a]:underline [&_a]:underline-offset-4">
+                    <RichText text={faq.answer} />
+                  </p>
                 </details>
               ))}
             </div>

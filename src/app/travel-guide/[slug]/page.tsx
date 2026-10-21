@@ -176,7 +176,9 @@ export default async function GuidePage({ params }: PageProps<"/travel-guide/[sl
                             +
                           </span>
                         </summary>
-                        <p className="mt-4 mb-0 leading-relaxed text-muted">{faq.answer}</p>
+                        <p className="mt-4 mb-0 leading-relaxed text-muted [&_a]:font-semibold [&_a]:text-orange-deep [&_a]:underline [&_a]:underline-offset-4">
+                          <RichText text={faq.answer} />
+                        </p>
                       </details>
                     ))}
                   </div>

@@ -1,4 +1,4 @@
-import type { Guide } from "@/content/guides";
+import { stripRichText, type Guide } from "@/content/guides";
 import { absoluteUrl, siteConfig } from "./site-config";
 
 /**
@@ -78,7 +78,7 @@ export function faqSchema(faqs: { question: string; answer: string }[]): JsonLdO
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      acceptedAnswer: { "@type": "Answer", text: stripRichText(faq.answer) },
     })),
   };
 }

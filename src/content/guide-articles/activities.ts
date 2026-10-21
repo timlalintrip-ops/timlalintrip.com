@@ -85,7 +85,7 @@ export const activityGuides: Guide[] = [
     excerpt:
       "How to stand, steer and stop — and why falling on sand is part of the fun. Everything you need for your first runs.",
     intro:
-      "Sandboarding is the simplest and most affordable way to enjoy the Timlalin Dunes. You do not need any experience: boards are provided on site, your guide shows you the basics and the soft sand makes every fall painless. These tips will help you get the most out of your first session.",
+      "This page is for your first runs: sitting versus standing, how to stop, what to wear, and the walk back up the dune. Boards, price and how to enquire are on the [sandboarding activity page](/activities/sandboarding-timlalin) — from €10 per person, board provided, pay on arrival.",
     sections: [
       {
         heading: "Sitting or standing?",
@@ -130,7 +130,7 @@ export const activityGuides: Guide[] = [
       {
         heading: "Who is sandboarding for?",
         paragraphs: [
-          "Sandboarding suits almost everyone who is happy to climb a dune a few times: children, teenagers, families, groups of friends and surfers or snowboarders on a rest day. It starts from €10 per person with the board provided, and pairs well with a [camel ride](/activities/camel-ride) or [sunset tea](/activities/sunset-tea) for a relaxing finish. [Book your sandboarding session](/activities/sandboarding-timlalin) or read our [family guide](/travel-guide/timlalin-dunes-with-kids).",
+          "Anyone happy to walk up a dune a few times can join in: children, teenagers, families, groups of friends, and surfers or snowboarders on a rest day. For a slower finish after your runs, many visitors add a [camel ride](/activities/camel-ride) or [sunset tea](/activities/sunset-tea). Open the [sandboarding activity](/activities/sandboarding-timlalin) when you are ready to enquire, or read the [family guide](/travel-guide/timlalin-dunes-with-kids).",
         ],
       },
     ],
@@ -152,6 +152,7 @@ export const activityGuides: Guide[] = [
     ],
     heroImage: media.sandboardingBoard,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["sandboarding-timlalin", "camel-ride", "sunset-tea"],
     relatedGuideSlugs: ["timlalin-dunes-with-kids", "what-to-pack-timlalin-dunes"],
     published: true,
@@ -166,7 +167,7 @@ export const activityGuides: Guide[] = [
     excerpt:
       "What happens on a guided quad ride, how to stay comfortable and safe, and why the Timlalin Dunes are a great place to start.",
     intro:
-      "Quad biking is the most popular adventure activity on the coast north of Agadir — and for good reason. On a one-hour guided ride across the Timlalin Dunes you climb sandy crests, cross wide open plains and stop at viewpoints where the dunes meet the Atlantic. Here is everything first-time riders should know.",
+      "This is a first-timer's briefing: how a guided hour on the dunes is structured, how sand feels under the wheels, and what to wear. To enquire, see [quad biking at Timlalin](/activities/quad-biking-timlalin) — about one hour, from €25 per person, pay on arrival.",
     sections: [
       {
         heading: "Why ride quads at Timlalin?",
@@ -203,10 +204,10 @@ export const activityGuides: Guide[] = [
         image: media.quadHelmets,
       },
       {
-        heading: "Price, duration and booking",
+        heading: "Where to book",
         paragraphs: [
-          "The guided quad ride lasts about one hour and starts from €25 per person. There is no advance payment: you [send an enquiry](/book-now), we confirm availability by email and you pay on arrival. Hotel pickup from Agadir, Taghazout or Imsouane can be added as an extra.",
-          "Want more? Combine your ride with [sandboarding](/activities/sandboarding-timlalin) or a [canyon tour](/activities/canyon-tour), or see how quads compare with [buggies](/travel-guide/quad-or-buggy-timlalin). Ready to go? [Book your quad ride](/activities/quad-biking-timlalin).",
+          "Duration, price and the enquiry form live on the [quad biking activity page](/activities/quad-biking-timlalin). The guided ride lasts about one hour and starts from €25 per person, paid on arrival. Hotel pickup can be added as an extra.",
+          "To compare vehicles, see [quad or buggy](/travel-guide/quad-or-buggy-timlalin). Many visitors add [sandboarding](/activities/sandboarding-timlalin) or a [canyon tour](/activities/canyon-tour) on the same day.",
         ],
       },
     ],
@@ -228,6 +229,7 @@ export const activityGuides: Guide[] = [
     ],
     heroImage: media.quadAction,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["quad-biking-timlalin", "buggy-adventure", "sandboarding-timlalin"],
     relatedGuideSlugs: ["quad-or-buggy-timlalin", "staying-safe-on-the-dunes"],
     published: true,

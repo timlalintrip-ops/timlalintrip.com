@@ -11,7 +11,11 @@ const knownPaths = new Set([
 ]);
 
 function guideStrings(guide: (typeof guides)[number]): string[] {
-  return guide.sections.flatMap((section) => [...(section.paragraphs ?? []), ...(section.list ?? [])]);
+  return [
+    guide.intro,
+    ...guide.sections.flatMap((section) => [...(section.paragraphs ?? []), ...(section.list ?? [])]),
+    ...(guide.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+  ];
 }
 
 describe("travel guides", () => {
@@ -51,6 +55,17 @@ describe("travel guides", () => {
     for (const activity of getPublishedActivities()) {
       expect(activity.relatedGuideSlugs?.length, activity.slug).toBeGreaterThan(0);
       for (const slug of activity.relatedGuideSlugs ?? []) expect(getGuideBySlug(slug), slug).toBeDefined();
+    }
+  });
+
+  it("activity copy only links to existing pages", () => {
+    for (const activity of getPublishedActivities()) {
+      const strings = [
+        ...activity.overview,
+        ...(activity.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
+      ];
+      const links = strings.flatMap(parseRichText).flatMap((part) => (part.href ? [part.href] : []));
+      for (const href of links) expect(knownPaths, `${activity.slug} → ${href}`).toContain(href);
     }
   });
 });

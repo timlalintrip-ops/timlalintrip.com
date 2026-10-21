@@ -17,8 +17,8 @@ export const planningGuides: Guide[] = [
       {
         heading: "Where exactly are the Timlalin Dunes?",
         paragraphs: [
-          "Timlalin — sometimes written Timlaline — is a coastal dune field just south of Tamri, on the N1 road that runs from Agadir towards Essaouira. The dunes rise right behind the coastline, so from their crests you look straight out over the Atlantic. It is a very different landscape from the beaches of Agadir, and it is close enough for a half-day or full-day trip.",
-          "For reference, the dunes are roughly 60 km north of Agadir, about 35 km beyond Taghazout and around 20 km south of Imsouane.",
+          "Timlalin — sometimes written Timlaline — is a coastal dune field just south of Tamri, on the N1 road that runs from Agadir towards Essaouira. The dunes rise right behind the coastline, so from their crests you look straight out over the Atlantic. It is a very different landscape from the beaches of Agadir, and it is close enough for a half-day or full-day trip from the city.",
+          "The dunes are about 60 km north of Agadir. If you are staying in Taghazout or Imsouane rather than in Agadir, use the [surf-town day-trip guide](/travel-guide/timlalin-dunes-from-taghazout-and-imsouane) for those shorter drives and how to fit the dunes around a surf session.",
         ],
       },
       {
@@ -44,8 +44,8 @@ export const planningGuides: Guide[] = [
       {
         heading: "Without a car: taxis and hotel pickup",
         paragraphs: [
-          "If you are not driving, the most comfortable option is hotel pickup. Pickup from Agadir, Taghazout or Imsouane can be added to any TimlalinTrip activity as an extra — simply mention where you are staying when you [send your enquiry](/book-now), and we include the details in our reply.",
-          "Grand taxis also run along the coast, and many hotels can arrange a private driver for the day. If you use a taxi, agree on the price and the return journey before you set off, as transport back from the dunes is less frequent than in town.",
+          "If you are not driving from Agadir, the most comfortable option is hotel pickup. Pickup from the Agadir hotel zone can be added to any TimlalinTrip activity as an extra — mention where you are staying when you [send your enquiry](/book-now), and we include the details in our reply. Pickup from Taghazout or Imsouane, including surf camps, is covered in the [surf-town guide](/travel-guide/timlalin-dunes-from-taghazout-and-imsouane).",
+          "Grand taxis also run north from Agadir along the coast, and many hotels can arrange a private driver for the day. If you use a taxi, agree on the price and the return journey before you set off, as transport back from the dunes is less frequent than in town.",
         ],
       },
       {
@@ -83,6 +83,7 @@ export const planningGuides: Guide[] = [
     ],
     heroImage: media.quadOceanView,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["quad-biking-timlalin", "sandboarding-timlalin", "sunset-tea"],
     relatedGuideSlugs: ["timlalin-dunes-from-taghazout-and-imsouane", "timlalin-dunes-day-itinerary"],
     published: true,
@@ -102,7 +103,7 @@ export const planningGuides: Guide[] = [
       {
         heading: "From Taghazout: about 35 km north",
         paragraphs: [
-          "From Taghazout, follow the N1 north towards Tamri and Essaouira. The road climbs along the cliffs with superb ocean views and reaches the dunes in roughly 30 to 40 minutes. Visitors staying in Tamraght or Aourir follow the same route, adding a few minutes.",
+          "From Taghazout the dunes are about 35 km north on the N1, usually 30 to 40 minutes by car. Tamraght and Aourir add a few minutes on the same road. For the drive from Agadir city or the airport — including the cliff section after Taghazout, traffic and fuel stops — use [How to get to the Timlalin Dunes from Agadir](/travel-guide/how-to-get-to-timlalin-dunes-from-agadir).",
         ],
       },
       {
@@ -129,7 +130,7 @@ export const planningGuides: Guide[] = [
       {
         heading: "Hotel pickup from the surf villages",
         paragraphs: [
-          "Pickup from Taghazout and Imsouane can be added as an extra to any activity. Tell us the name of your surf camp, hostel or guesthouse in your [booking enquiry](/book-now) and we confirm the pickup time with you. Groups from the same surf camp can easily be organised together.",
+          "Pickup from Taghazout and Imsouane can be added as an extra. Tell us the name of your surf camp, hostel or guesthouse in your [booking enquiry](/book-now) and we confirm a pickup time. Groups from the same camp can be organised together. Pickup from Agadir hotels is described in the [Agadir directions guide](/travel-guide/how-to-get-to-timlalin-dunes-from-agadir).",
         ],
       },
     ],
@@ -151,6 +152,7 @@ export const planningGuides: Guide[] = [
     ],
     heroImage: media.coastSeaArch,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-21",
     relatedActivitySlugs: ["sandboarding-timlalin", "quad-biking-timlalin", "sunset-tea"],
     relatedGuideSlugs: ["how-to-get-to-timlalin-dunes-from-agadir", "sandboarding-for-beginners"],
     published: true,
