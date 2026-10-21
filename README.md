@@ -150,7 +150,7 @@ Keep the in-memory limit as a second layer in all cases.
 
 Set in `next.config.ts` for every route: Content-Security-Policy, HSTS, `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`; `X-Powered-By` is removed.
 
-The CSP allows only same-origin scripts, styles, images, fonts and connections, blocks plugins, framing, `<base>` hijacking and form posts to other origins. It is a **static** policy and keeps `'unsafe-inline'` for scripts because Next.js streams its page data in inline scripts; a nonce-based policy would force every page to render per request, which Next.js documents as incompatible with the prerendering used here. If you add analytics, maps or embeds, add their exact origins to the policy.
+The CSP allows same-origin scripts, styles, images, fonts and connections, plus Google Analytics 4 origins (`*.googletagmanager.com`, `*.google-analytics.com`, `*.analytics.google.com`). It blocks plugins, framing, `<base>` hijacking and form posts to other origins. It is a **static** policy and keeps `'unsafe-inline'` for scripts because Next.js streams its page data in inline scripts; a nonce-based policy would force every page to render per request, which Next.js documents as incompatible with the prerendering used here. If you add maps or embeds, add their exact origins to the policy.
 
 ## SEO
 

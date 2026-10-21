@@ -67,7 +67,8 @@ export default function PrivacyPolicyPage() {
       <h2>Services that process your information</h2>
       <p>
         Enquiries are transmitted securely to the service we use to receive them, and the website is served by a
-        hosting provider that processes technical data such as IP addresses in server logs.
+        hosting provider that processes technical data such as IP addresses in server logs. We also use Google
+        Analytics, operated by Google LLC, to measure visits to this website.
       </p>
       <p>
         <ToComplete>names of the hosting provider and enquiry-handling service, and where they store data</ToComplete>
@@ -75,8 +76,10 @@ export default function PrivacyPolicyPage() {
 
       <h2>Cookies and analytics</h2>
       <p>
-        This website does not currently use analytics, advertising or tracking cookies. If this changes, this policy
-        will be updated before any such tools are added.
+        This website uses Google Analytics (measurement ID {siteConfig.googleAnalyticsId}) to understand which pages
+        are visited. Google may collect technical data such as IP address, browser type, pages viewed and approximate
+        location. We do not use advertising or remarketing tags. See Google&apos;s privacy policy for how Google
+        handles this data.
       </p>
 
       <h2>How long we keep your information</h2>

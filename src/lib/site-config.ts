@@ -60,6 +60,8 @@ type SiteConfig = {
   socialImage: SocialImage;
   contact: ContactDetails;
   socialProfiles: SocialProfile[];
+  /** GA4 measurement ID. Public in page source; omit to disable the tag. */
+  googleAnalyticsId?: string;
 };
 
 export const siteConfig: SiteConfig = {
@@ -87,6 +89,7 @@ export const siteConfig: SiteConfig = {
     { network: "facebook", label: "Facebook", url: "https://www.facebook.com/share/1ERAhdd3wq/" },
     { network: "instagram", label: "Instagram", url: "https://www.instagram.com/timlalin_trip" },
   ],
+  googleAnalyticsId: "G-SV64J2XFNT",
 };
 
 export type NavItem = {

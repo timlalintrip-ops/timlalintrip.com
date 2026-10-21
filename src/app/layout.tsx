@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { defaultSocialImage } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <FloatingActions />
+        <GoogleAnalytics />
       </body>
     </html>
   );

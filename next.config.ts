@@ -5,14 +5,21 @@ const isDev = process.env.NODE_ENV === "development";
 // Static (nonce-free) policy: nonces require per-request rendering, which is
 // incompatible with the prerendered/partially prerendered pages used here.
 // Next.js still needs inline scripts for its streamed RSC payload, hence
-// 'unsafe-inline' in script-src. No third-party origins are allowed.
+// 'unsafe-inline' in script-src. Third-party origins are limited to GA4.
+const googleAnalyticsOrigins = {
+  scripts: "https://*.googletagmanager.com",
+  images: "https://*.google-analytics.com https://*.googletagmanager.com",
+  connect:
+    "https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+};
+
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${googleAnalyticsOrigins.scripts}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob: ${googleAnalyticsOrigins.images}`,
   "font-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self' ${googleAnalyticsOrigins.connect}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
